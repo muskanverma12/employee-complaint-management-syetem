@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Complaint List</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>All Complaints</h1>
+
+    <!-- Top Add Button styled as per .top-buttons -->
+    <div class="top-buttons">
+        <a href="/add" class="button-link"> Add Complaint</a>
+    </div>
+
+    <div class="container">
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for complaint in complaints %}
+                <tr>
+                    <td>{{ complaint.id }}</td>
+                    <td>{{ complaint.title }}</td>
+                    <td>{{ complaint.description }}</td>
+                    <td>{{ complaint.status }}</td>
+                    <td>
+                        <a href="/update/{{ complaint.id }}" class="button-link" style="background-color:#ffc107;">✏️ Edit</a>
+                        <a href="/delete/{{ complaint.id }}" class="button-link" style="background-color:#dc3545;">🗑️ Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
